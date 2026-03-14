@@ -38,7 +38,8 @@ const loginUser = (req, res) => {
 
                 res.json({
                     message: "Login successful",
-                    token: token
+                    token: token,
+                    user_id: user.id
                 })
             } else {
                 res.status(400).json({ message: "Invalid password" })

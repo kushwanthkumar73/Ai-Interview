@@ -6,10 +6,13 @@ import ResumeUpload from "./pages/ResumeUpload"
 import Questions from "./pages/Questions"
 import Answer from "./pages/Answer"
 import Dashboard from "./pages/Dashboard"
+import Navbar from "./components/Navbar"
+import InterviewSession from "./pages/InterviewSession"
 
 function App() {
   return (
     <BrowserRouter>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
@@ -17,6 +20,7 @@ function App() {
         <Route path="/questions" element={<Questions />} />
         <Route path="/answer" element={<Answer />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/interview" element={<InterviewSession />} />
       </Routes>
     </BrowserRouter>
   )

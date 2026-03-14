@@ -8,7 +8,7 @@ function Questions() {
     const response = await axios.post(
       "http://localhost:5000/api/ai/questions",
       {
-        user_id: 2
+        user_id: localStorage.getItem("user_id")
       }
     )
 

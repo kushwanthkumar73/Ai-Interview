@@ -4,22 +4,29 @@ import { useNavigate } from "react-router-dom"
 
 function ResumeUpload() {
   const [file, setFile] = useState(null)
-    const navigate = useNavigate()
+  const navigate = useNavigate()
 
   const handleUpload = async () => {
-    const formData = new FormData()
-    
+    try {
+      const formData = new FormData()
 
-    formData.append("resume", file)
-    formData.append("user_id", 2)
+      formData.append("resume", file)
+      formData.append("user_id", localStorage.getItem("user_id"))
 
-    const response = await axios.post(
-      "http://localhost:5000/api/resume/upload",
-      formData
-    )
+      console.log("user_id:", localStorage.getItem("user_id"))
 
-    console.log(response.data)
-    navigate("/questions")
+      const response = await axios.post(
+        "http://localhost:5000/api/resume/upload",
+        formData
+      )
+
+      console.log(response.data)
+      navigate("/questions")
+
+    } catch (error) {
+      console.log(error)
+      alert("Upload failed")
+    }
   }
 
   return (

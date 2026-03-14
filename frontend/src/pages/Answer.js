@@ -10,7 +10,7 @@ function Answer() {
     const response = await axios.post(
       "http://localhost:5000/api/answer/evaluate",
       {
-        user_id: 2,
+        user_id: localStorage.getItem("user_id"),
         question: "Explain Node.js event loop",
         answer: answer
       }

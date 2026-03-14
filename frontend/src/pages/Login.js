@@ -15,7 +15,8 @@ function Login() {
       })
 
       localStorage.setItem("token", response.data.token)
-      navigate("/upload")
+      localStorage.setItem("user_id", response.data.user_id)
+      navigate("/dashboard")
       console.log(response.data)
 
     } catch (error) {
