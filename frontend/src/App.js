@@ -9,6 +9,7 @@ import Dashboard from "./pages/Dashboard"
 import Navbar from "./components/Navbar"
 import InterviewSession from "./pages/InterviewSession"
 
+
 function App() {
   return (
     <BrowserRouter>

@@ -1,7 +1,7 @@
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f7f5ff;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f5f3ff;
 }
 
 .layout {
@@ -9,23 +9,72 @@ body {
 }
 
 .sidebar {
-  width: 250px;
+  width: 260px;
   height: 100vh;
-  background: #6d28d9;
+  background: linear-gradient(180deg, #7c3aed, #5b21b6);
   color: white;
   padding: 30px 20px;
+  box-shadow: 4px 0 20px rgba(0,0,0,0.08);
 }
 
 .sidebar h2 {
-  margin-bottom: 40px;
+  margin-bottom: 50px;
+  font-size: 28px;
 }
 
 .sidebar a {
   display: block;
   color: white;
   text-decoration: none;
-  margin: 20px 0;
+  margin: 22px 0;
   font-size: 18px;
+}
+
+.main-content {
+  flex: 1;
+  padding: 40px;
+}
+
+.dashboard-container {
+  max-width: 1200px;
+}
+
+.cards {
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+  margin-top: 35px;
+}
+
+.card {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  width: 240px;
+  box-shadow: 0 12px 30px rgba(124,58,237,0.12);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card h3 {
+  color: #6d28d9;
+}
+
+.card p {
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+.section-box {
+  margin-top: 35px;
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 12px 30px rgba(124,58,237,0.08);
 }
 
 .main-content {
@@ -84,4 +133,19 @@ body {
   color: white;
   border-radius: 10px;
   text-decoration: none;
+}
+
+.interview-card {
+  background: white;
+  padding: 30px;
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  max-width: 700px;
+}
+
+.feedback-box {
+  margin-top: 20px;
+  background: #f3e8ff;
+  padding: 20px;
+  border-radius: 12px;
 }

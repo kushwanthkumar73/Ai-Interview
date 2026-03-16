@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
+import Layout from "../components/Layout"
 
 function InterviewSession() {
   const [questions, setQuestions] = useState([])
@@ -45,34 +46,36 @@ function InterviewSession() {
   }
 
   return (
-    <div className="page-container">
-      <h2>AI Interview Session</h2>
+    <Layout>
+      <div className="interview-card">
+        <h2>Question {currentIndex + 1}</h2>
 
-      {questions.length > 0 && (
-        <>
-          <h3>{questions[currentIndex]}</h3>
+        {questions.length > 0 && (
+          <>
+            <h3>{questions[currentIndex]}</h3>
 
-          <textarea
-            rows="6"
-            onChange={(e) => setAnswer(e.target.value)}
-            value={answer}
-          />
+            <textarea
+              rows="6"
+              value={answer}
+              onChange={(e) => setAnswer(e.target.value)}
+            />
 
-          <button onClick={submitAnswer}>Submit Answer</button>
+            <button onClick={submitAnswer}>Submit Answer</button>
 
-          {score && (
-            <>
-              <p>Score: {score}</p>
-              <p>{feedback}</p>
+            {score && (
+              <div className="feedback-box">
+                <p>Score: {score}</p>
+                <p>{feedback}</p>
 
-              {currentIndex < questions.length - 1 && (
-                <button onClick={nextQuestion}>Next Question</button>
-              )}
-            </>
-          )}
-        </>
-      )}
-    </div>
+                {currentIndex < questions.length - 1 && (
+                  <button onClick={nextQuestion}>Next Question</button>
+                )}
+              </div>
+            )}
+          </>
+        )}
+      </div>
+    </Layout>
   )
 }
 

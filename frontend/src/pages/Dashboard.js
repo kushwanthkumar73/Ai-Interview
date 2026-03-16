@@ -44,7 +44,11 @@ function Dashboard() {
             <h3>AI Engine</h3>
             <p>Active</p>
           </div>
-        </div>
+          <div className="section-box">
+            <h3>Recent Interview Feedback</h3>
+            <p>Strong understanding of backend concepts. Improve explanation depth.</p>
+            </div>
+            </div>
       )}
 
       <div className="action-buttons">
