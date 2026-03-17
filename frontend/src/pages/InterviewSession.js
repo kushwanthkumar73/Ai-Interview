@@ -8,10 +8,19 @@ function InterviewSession() {
   const [answer, setAnswer] = useState("")
   const [score, setScore] = useState(null)
   const [feedback, setFeedback] = useState("")
+  const [timer, setTimer] = useState(60)
 
   useEffect(() => {
     loadQuestions()
   }, [])
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimer((prev) => prev > 0 ? prev - 1 : 0)
+    }, 1000)
+
+    return () => clearInterval(interval)
+  }, [currentIndex])
 
   const loadQuestions = async () => {
     const response = await axios.post(
@@ -30,7 +39,7 @@ function InterviewSession() {
       {
         user_id: localStorage.getItem("user_id"),
         question: questions[currentIndex],
-        answer: answer
+        answer
       }
     )
 
@@ -39,41 +48,47 @@ function InterviewSession() {
   }
 
   const nextQuestion = () => {
+  if (currentIndex < questions.length - 1) {
     setCurrentIndex(currentIndex + 1)
     setAnswer("")
     setScore(null)
     setFeedback("")
+    setTimer(60)
+  } else {
+    window.location.href = "/dashboard"
   }
+}
 
   return (
     <Layout>
-      <div className="interview-card">
-        <h2>Question {currentIndex + 1}</h2>
+      <div className="interview-layout">
+        <div className="question-panel">
+          <div className="badge">Medium</div>
+          <h2>Question {currentIndex + 1}</h2>
+          <h3>{questions[currentIndex]}</h3>
+          <p>Time Left: {timer}s</p>
+        </div>
 
-        {questions.length > 0 && (
-          <>
-            <h3>{questions[currentIndex]}</h3>
+        <div className="answer-panel">
+          <textarea
+            rows="8"
+            value={answer}
+            onChange={(e) => setAnswer(e.target.value)}
+          />
 
-            <textarea
-              rows="6"
-              value={answer}
-              onChange={(e) => setAnswer(e.target.value)}
-            />
+          <button onClick={submitAnswer}>Submit Answer</button>
 
-            <button onClick={submitAnswer}>Submit Answer</button>
+          {score && (
+  <div className="feedback-box">
+    <h3>Score: {score}</h3>
+    <p>{feedback}</p>
 
-            {score && (
-              <div className="feedback-box">
-                <p>Score: {score}</p>
-                <p>{feedback}</p>
-
-                {currentIndex < questions.length - 1 && (
-                  <button onClick={nextQuestion}>Next Question</button>
-                )}
-              </div>
-            )}
-          </>
-        )}
+    <button onClick={nextQuestion}>
+      {currentIndex < questions.length - 1 ? "Next Question" : "Finish Interview"}
+    </button>
+  </div>
+)}
+        </div>
       </div>
     </Layout>
   )

@@ -1,6 +1,6 @@
 import { useState } from "react"
 import axios from "axios"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 
 function Login() {
   const [email, setEmail] = useState("")
@@ -9,15 +9,18 @@ function Login() {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/api/users/login", {
-        email,
-        password
-      })
+      const response = await axios.post(
+        "http://localhost:5000/api/users/login",
+        {
+          email,
+          password
+        }
+      )
 
       localStorage.setItem("token", response.data.token)
       localStorage.setItem("user_id", response.data.user_id)
+
       navigate("/dashboard")
-      console.log(response.data)
 
     } catch (error) {
       console.log(error)
@@ -25,21 +28,30 @@ function Login() {
   }
 
   return (
-    <div>
-      <h2>Login</h2>
+    <div className="auth-page">
+      <div className="auth-box">
+        <h1>AI Interview Platform</h1>
+        <p>Practice smarter. Get interview ready.</p>
 
-      <input
-        placeholder="Email"
-        onChange={(e) => setEmail(e.target.value)}
-      />
+        <input
+          placeholder="Email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
 
-      <input
-        placeholder="Password"
-        type="password"
-        onChange={(e) => setPassword(e.target.value)}
-      />
+        <input
+          placeholder="Password"
+          type="password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
-      <button onClick={handleLogin}>Login</button>
+        <button onClick={handleLogin}>
+          Login
+        </button>
+
+        <p>
+          No account? <Link to="/register">Register</Link>
+        </p>
+      </div>
     </div>
   )
 }
