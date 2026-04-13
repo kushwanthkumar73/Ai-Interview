@@ -40,7 +40,7 @@ function Dashboard() {
 
         <div className="action-buttons">
           <a href="/upload">Upload Resume</a>
-          <a href="/interview">Start Interview</a>
+          <a href="/setup">Start Interview</a>
         </div>
 
         {data && (

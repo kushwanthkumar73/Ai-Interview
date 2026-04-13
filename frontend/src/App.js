@@ -8,6 +8,7 @@ import Dashboard from "./pages/Dashboard"
 import InterviewSession from "./pages/InterviewSession"
 import History from "./pages/History"
 import Report from "./pages/Report"
+import InterviewSetup from "./pages/InterviewSetup"
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/interview" element={<InterviewSession />} />
         <Route path="/history" element={<History />} />
         <Route path="/report" element={<Report />} />
+        <Route path="/setup" element={<InterviewSetup />} />
       </Routes>
     </BrowserRouter>
   )
